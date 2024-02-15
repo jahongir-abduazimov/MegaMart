@@ -1,20 +1,23 @@
 "use strict";
 
-let cardWrapper = document.querySelector('.wrapper');
+// ------------- Brandi bo'yicha filterlash------------------
+
+let cardWrapper = $('.wrapper');
+let brandOption = $('#brands');
+let brand = []
 
 // ------------ RENDER FUNCTION --------------------
 
 
 function renderProducts(data) {
     
-if(data.products.length > 0) {
+if(data.length > 0) {
 
-    data.products.forEach((el)=>{
+    data.forEach((el)=>{
 
         const {title, brand, rating , thumbnail , price , discountPercentage}=el; 
-        const card = document.createElement('div');
-        card.setAttribute('class', 'relative w-[227px] border-[1px] border-[#EDEDED] rounded-2xl hover:border-[#008ECC] hover:shadow-[0px_0px_20px_10px_#0000000D] duration-150');
-        card.innerHTML=`
+        const card = render('div', 'card',
+        `
         <div class="h-[189px] bg-[#F5F5F5] flex justify-center items-center rounded-t-2xl">
             <img class="h-[189px] object-contain" src="${thumbnail}" alt="img">
         </div>
@@ -29,7 +32,9 @@ if(data.products.length > 0) {
             </div>
             <p class="text-[#249B3E] font-semibold">Raiting - ${rating}</p>
         </div>
-         `;
+         `);
+        card.setAttribute('class', 'relative w-[227px] border-[1px] border-[#EDEDED] rounded-2xl hover:border-[#008ECC] hover:shadow-[0px_0px_20px_10px_#0000000D] duration-150');
+
 
          cardWrapper.appendChild(card);
 
@@ -40,4 +45,93 @@ if(data.products.length > 0) {
 
 }
 
-renderProducts(product)
+renderProducts(product.products)
+
+function findBrand(data) {
+    if (data.length > 0) {
+        data.forEach((el) => {
+            if (!brand.includes(el.brand)) {
+                brand.push(el.brand)
+            }
+        })
+    }
+}
+
+findBrand(product.products)
+
+
+function renderBrand(data) {
+    if (data.length > 0) {
+        data.forEach((el) => {
+            const option = render('option', 'option', el)
+            brandOption.appendChild(option)
+        })
+    }
+}
+
+renderBrand(brand)
+
+brandOption.addEventListener('change', (el) => {
+    sortBrands(el.target.value)
+})
+
+function sortBrands(brandName) {
+    cardWrapper.innerHTML = ""
+
+    const filterBrand = product.products.filter(el =>{
+        return el.brand.toLowerCase() == brandName.toLowerCase()
+    })
+
+    renderProducts(filterBrand)
+}
+
+
+
+
+
+
+
+// ---------- Narxi bo'yicha sortlash ---------------
+
+function sortPrice(product) {
+    const priceDown = product.products.sort((a,b) => a.price - b.price).map((el) => {
+        return {nomi:el.title, narxi:el.price}
+    })
+    return priceDown
+}
+
+const price = sortPrice(product)
+console.log(price);
+
+
+// ------------------ Reytingi bo'yicha sortlash --------------
+
+function sortRate(productList) {
+    return productList.products.sort((a,b) => a.rating - b.rating).map((el) => {
+        return {nomi:el.title, reytingi:el.rating}
+    })
+}
+
+const rate = sortRate(product)
+console.log(rate);
+
+
+// ------------------ O'zbek tiliga o'girish ------------------
+
+function uzbek(product) {
+    return product.products.map((el) => {
+        return {id:el.id, Miqdori:el.quantity, Nomi:el.title, Tavsifi:el.description, Narxi:el.price, Chegirma:el.discountPercentage, Reytingi:el.rating, Aksiyasi:el.stock, Brandi:el.brand, Kategoriyasi:el.category, Eskizi:el.thumbnail, Rasmlari:el.images}
+    })
+}
+
+const language = uzbek(product)
+console.log(language);
+
+
+// ----------------- Kategoriyasi bo'yicha filterlash-----------------
+
+function categoryCount(productList, categories) {
+    return productList.products.filter((el) => el.category.toLowerCase() == categories.toLowerCase())
+}
+const category = categoryCount(product, "smartphones")
+console.log(category);

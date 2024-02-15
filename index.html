@@ -169,7 +169,24 @@
     </section>
     <section class="py-[120px]">
         <div class="container">
-            <p class="pb-3 mb-10 border-b-[3px] border-[#008ECC] inline font-bold text-[24px] text-[#666666] underline-offset-1">Grab the best deal on <span class="text-[#008ECC]">Smartphones</span></p>
+            <div class="flex justify-between items-start">
+                <p class="pb-3 mb-10 border-b-[3px] border-[#008ECC] inline font-bold text-[24px] text-[#666666] underline-offset-1">Grab the best deal on <span class="text-[#008ECC]">Smartphones</span></p>
+                <div class="flex gap-3">
+                    <select class="border-[2px]" id="brands">
+                        <option disabled selected value="brands">Brandlar bo'yicha</option>
+                    </select>
+                    <select class="border-[2px]">
+                        <option disabled selected value="">Tartibi bo'yicha</option>
+                        <option value="a-z">A-z</option>
+                        <option value="z-a">Z-a</option>
+                    </select>
+                    <select class="border-[2px]" id="">
+                        <option disabled selected value="">Narxi bo'yicha</option>
+                        <option value="up">Qimmat</option>
+                        <option value="down">Arzon</option>
+                    </select>
+                </div>
+            </div>
             <div class="wrapper flex flex-wrap gap-[10px] mt-10">
                 
             </div>
@@ -229,6 +246,7 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous">
 </script>
+<script src="./utuls.js"></script>
 <script src="./product.js"></script>
 <script src="./index.js"></script>
 
