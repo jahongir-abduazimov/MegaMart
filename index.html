@@ -27,7 +27,7 @@
                 <div class="flex items-center gap-[30px]">
                     <div class="w-[507px] h-[48px] flex items-center bg-[#F3F9FB] rounded-[10px] px-4 gap-[10px]">
                         <img src="./assets/images/Search.svg" alt="icon">
-                        <input class="bg-[#F3F9FB] focus:outline-none w-full px-2" type="text"
+                        <input class="header-input bg-[#F3F9FB] focus:outline-none w-full px-2" type="text"
                             placeholder="Search essentials, groceries and more...">
                         <img src="./assets/images/list.svg" alt="iocn">
                     </div>
@@ -172,18 +172,27 @@
             <div class="flex justify-between items-start">
                 <p class="pb-3 mb-10 border-b-[3px] border-[#008ECC] inline font-bold text-[24px] text-[#666666] underline-offset-1">Grab the best deal on <span class="text-[#008ECC]">Smartphones</span></p>
                 <div class="flex gap-3">
+                    <select id="category" class="border-[2px]">
+                        <option value="all" disabled selected>Kategoriya</option>
+                        <option value="smartphones">Smartphones</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="fragrances">Fragrances</option>
+                        <option value="skincare">Skincare</option>
+                        <option value="groceries">Groceries</option>
+                        <option value="home-decoration">Home-decoration</option>
+                    </select>
                     <select class="border-[2px]" id="brands">
                         <option disabled selected value="brands">Brandlar bo'yicha</option>
                     </select>
-                    <select class="border-[2px]">
-                        <option disabled selected value="">Tartibi bo'yicha</option>
-                        <option value="a-z">A-z</option>
-                        <option value="z-a">Z-a</option>
-                    </select>
-                    <select class="border-[2px]" id="">
+                    <select class="border-[2px]" id="price">
                         <option disabled selected value="">Narxi bo'yicha</option>
                         <option value="up">Qimmat</option>
                         <option value="down">Arzon</option>
+                    </select>
+                    <select class="border-[2px]" id="rating">
+                        <option disabled selected value="">Reytingi bo'yicha</option>
+                        <option value="up">O'sish</option>
+                        <option value="down">Kamayish</option>
                     </select>
                 </div>
             </div>
